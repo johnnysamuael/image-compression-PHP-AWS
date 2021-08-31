@@ -1,4 +1,6 @@
 # flamapp_assignment
+
+This is done using PHP and can be tested with the hosted version by me on heroku by syncing this git : https://flamapp.herokuapp.com/
 Image compression and rendering web service/application.
 
 This form sends a post request with the following parameters (Image, quality, height and width). If height and width are not specified the quality is reduced as per the parameter inputted. If quality and the hxw are provided, the image is compressed and resized.
