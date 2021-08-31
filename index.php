@@ -68,20 +68,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 		echo "quality cannot be more than 100 or less than 0";
 			exit();
 	}
-		 $filename = compress_image($temp_name, "uploads/" . $t."compressed_".$file_name, $givenquality);
-			echo '<img src="' . "uploads/" . $t. "compressed_".$file_name . '" alt="error">'; 
+		 $filename = compress_image($temp_name, $t."compressed_".$file_name, $givenquality);
+			echo '<img src="' . $t. "compressed_".$file_name . '" alt="error">'; 
 				echo "<h1> Original size :" . (filesize($temp_name)/1000)."kb </h1>";
-			echo " <h1>compressed size :" . (filesize("uploads/" . $t."compressed_".$file_name)/1000)."</h1>";
+			echo " <h1>compressed size :" . (filesize($t."compressed_".$file_name)/1000)."</h1>";
 		
 		} else {
 			if ($givenquality>100 or $givenquality < 0 ) {
 		echo "quality cannot be more than 100 or less than 0";
 			exit();
 	}
-			 $filename1 = resize_image($temp_name, "uploads/" . $t. "resized_".$file_name,$height,$width,$givenquality);
-			 echo '<img src="' . "uploads/" .  $t."resized_".$file_name . '" alt="error">'; 
+			 $filename1 = resize_image($temp_name,  $t. "resized_".$file_name,$height,$width,$givenquality);
+			 echo '<img src="' . $t."resized_".$file_name . '" alt="error">'; 
 			echo "<h1>Original size :" . (filesize($temp_name)/1000)."kb </h1>";
-			echo "<h1>Size after resizing :" . (filesize("uploads/" . $t."resized_".$file_name)/1000)."kb</h1>";
+			echo "<h1>Size after resizing :" . (filesize( $t."resized_".$file_name)/1000)."kb</h1>";
 			
 		}
        
