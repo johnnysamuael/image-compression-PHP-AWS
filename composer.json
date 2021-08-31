@@ -1,0 +1,36 @@
+{
+    "name":"SoloDB4",
+    "description":"SoloDB4 requirements",
+    "require": {
+    "php": ">=5.6.4",
+    "laravel/framework": "5.3.*",
+    "mews/purifier": "~2.0",
+    "vinkla/hashids": "^2.4",
+    "barryvdh/laravel-debugbar": "^2.2",
+    "fzaninotto/faker": "~1.4",
+    "intervention/image": "^2.3",
+    "gd": "*",
+    "ext-gd": "*" 
+},
+    "recommend":{
+        "ext-zip":"*",
+        "ext-gd": "*" 
+    },
+    "autoload":{
+        "psr-0":{
+            "SoloDB":"application/module/SoloDB/src/",
+            "Admin":"application/module/Admin/src/",
+            "Core":"application/module/Core/src/",
+            "Equipment":"application/module/Equipment/src/",
+            "File":"application/module/File/src/",
+            "Flow":"application/module/Flow/src/",
+            "Location":"application/module/Location/src/",
+            "Module":"application/module/Module/src/"
+        }
+    },
+    "bin":["bin"],
+    "config":{
+        "vendor-dir":"vendor"
+    }
+
+}
