@@ -1,55 +1,108 @@
-<?
-if ($_SERVER['REQUEST_METHOD'] === 'POST')
-{
-  $file = '/tmp/sample-app.log';
-  $message = file_get_contents('php://input');
-  file_put_contents($file, date('Y-m-d H:i:s') . " Received message: " . $message . "\n", FILE_APPEND);
-}
-else
-{
-?>
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>PHP Application - AWS Elastic Beanstalk</title>
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster+Two" type="text/css">
-    <link rel="icon" href="https://awsmedia.s3.amazonaws.com/favicon.ico" type="image/ico" >
-    <link rel="shortcut icon" href="https://awsmedia.s3.amazonaws.com/favicon.ico" type="image/ico" >
-    <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-    <link rel="stylesheet" href="/styles.css" type="text/css">
-</head>
+    <title>Flam Assignment :</title>
+	<h1> CN Mini Project - Johny Samuael & Saket Kattuboina & Aditya Katti</h1>
+	</head>
+
 <body>
-    <section class="congratulations">
-        <h1>Congratulations!</h1>
-        <p>Your AWS Elastic Beanstalk <em>PHP</em> application is now running on your own dedicated environment in the AWS&nbsp;Cloud</p>
-        <p>You are running PHP version <?= phpversion() ?></p>
-        <p>This environment is launched with Elastic Beanstalk PHP Platform</p>
-    </section>
-
-    <section class="instructions">
-        <h2>What's Next?</h2>
-        <ul>
-            <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/">AWS Elastic Beanstalk overview</a></li>
-            <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/create_deploy_PHP_eb.html">Deploying AWS Elastic Beanstalk Applications in PHP Using Eb and Git</a></li>
-            <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/create_deploy_PHP.rds.html">Using Amazon RDS with PHP</a>
-            <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customize-containers-ec2.html">Customizing the Software on EC2 Instances</a></li>
-            <li><a href="http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customize-containers-resources.html">Customizing Environment Resources</a></li>
-        </ul>
-
-        <h2>AWS SDK for PHP</h2>
-        <ul>
-            <li><a href="http://aws.amazon.com/sdkforphp">AWS SDK for PHP home</a></li>
-            <li><a href="http://aws.amazon.com/php">PHP developer center</a></li>
-            <li><a href="https://github.com/aws/aws-sdk-php">AWS SDK for PHP on GitHub</a></li>
-        </ul>
-    </section>
-
-    <!--[if lt IE 9]><script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script><![endif]-->
+<?php
+if ($_SERVER['REQUEST_METHOD'] == "POST")
+{
+	
+	$givenquality = $_POST['quality'];
+	if ($givenquality==''){
+		$givenquality=100;
+	}
+	
+	 $width = $_POST['width'];
+	 $height = $_POST['height'];
+	$st=time();
+	$t = $st;
+	//echo "quality".$givenquality." "."width". $width." height ".$height;
+    $file_name = $_FILES["image_file"]["name"];
+    $file_type = $_FILES["image_file"]["type"];
+    $temp_name = $_FILES["image_file"]["tmp_name"];
+    $file_size = $_FILES["image_file"]["size"];
+    $error = $_FILES["image_file"]["error"];
+    if (!$temp_name)
+    {
+        echo "ERROR: Please browse for file before uploading";
+        exit();
+    }
+    function compress_image($source_url, $destination_url, $quality)
+    {
+        $info = getimagesize($source_url);
+        if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($source_url);
+        elseif ($info['mime'] == 'image/gif') $image = imagecreatefromgif($source_url);
+        elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($source_url);
+        imagejpeg($image, $destination_url, $quality);
+        //echo "Image uploaded successfully.";
+    }
+	   function resize_image($source_url, $destination_url,$height, $width,$quality)
+    {
+		  
+        $info = getimagesize($source_url);
+        if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($source_url);
+        elseif ($info['mime'] == 'image/gif') $image = imagecreatefromgif($source_url);
+        elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($source_url);
+		  
+		$imgResized = imagescale($image , $width,$height); 
+        imagejpeg($imgResized, $destination_url, $quality);
+        //echo "Image uploaded successfully.";
+    }
+    if ($error > 0)
+    {
+        echo $error;
+    }
+    else if (($file_type == "image/gif") || ($file_type == "image/jpeg") || ($file_type == "image/png") || ($file_type == "image/pjpeg"))
+    {
+		
+		if($height=='' and $height=='') {
+			if ($givenquality>100 or $givenquality < 0 ) {
+		echo "quality cannot be more than 100 or less than 0";
+			exit();
+	}
+		 $filename = compress_image($temp_name, $t."compressed_".$file_name, $givenquality);
+			echo '<img src="' . $t. "compressed_".$file_name . '" alt="error">'; 
+				echo "<h1> Original size :" . (filesize($temp_name)/1000)."kb </h1>";
+			echo " <h1>compressed size :" . (filesize($t."compressed_".$file_name)/1000)."</h1>";
+		
+		} else {
+			if ($givenquality>100 or $givenquality < 0 ) {
+		echo "quality cannot be more than 100 or less than 0";
+			exit();
+	}
+			 $filename1 = resize_image($temp_name,  $t. "resized_".$file_name,$height,$width,$givenquality);
+			 echo '<img src="' . $t."resized_".$file_name . '" alt="error">'; 
+			echo "<h1>Original size :" . (filesize($temp_name)/1000)."kb </h1>";
+			echo "<h1>Size after resizing :" . (filesize( $t."resized_".$file_name)/1000)."kb</h1>";
+			
+		}
+       
+		
+	    
+    }
+    else
+    {
+        echo "Uploaded image should be jpg or gif or png.";
+    }
+} ?>
+    <form action='' method='POST' enctype='multipart/form-data'>
+        <input name="image_file" type="file" accept="image/*">
+		<label for="blan">:</label><br>
+		<label for="fname">Quality%</label><br>
+		<input name="quality" type="number">
+		<label for="blan">%</label><br>
+		<label for="fname">Height</label><br>
+		<input name="height" type="number">
+		<label for="blan">:</label><br>
+		<label for="fname">WIdth:</label><br>
+		<input name="width" type="number">
+        <button type="submit">SUBMIT</button>
+    </form>
+	
 </body>
+
 </html>
-<? 
-} 
-?>
