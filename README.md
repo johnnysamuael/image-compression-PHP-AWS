@@ -1,4 +1,4 @@
-# flamapp_assignment
+# Image Compression and resizing using PHP
 Image compression and rendering web service/application.
 
 This is done using PHP and can be tested with the hosted version on my personal server t : http://floodanalyser.com/flamapp/flam.php
