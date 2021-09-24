@@ -42,7 +42,7 @@
 
 We have used the following cloud architecture to configure the image compression service in the AWS Clound environment 
 
-<img src="https://i.ibb.co/NrdmbFf/CN-AWS-drawio.png" alt="CN-AWS-drawio" border="0">
+<img src="images/Arch.png" alt="AWS-Arch Diagram" border="0">
 
 
 #### Configuration :
@@ -59,7 +59,7 @@ We have used the following cloud architecture to configure the image compression
   
 ## Demo
 
-<img src="https://i.ibb.co/b2YHRdX/ezgif-2-ab5082d1e0e4.gif" alt="Image Compression" width="1200" height="500">
+<img src="images/imgcompress.gif" alt="Image Compression" width="1200" height="500">
 
 ## Appendix
 
