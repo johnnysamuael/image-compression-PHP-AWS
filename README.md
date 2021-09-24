@@ -1,4 +1,5 @@
 # Image Compression and resizing using PHP
+![../images/Screenshot 2021-09-24 at 2.16.06 PM.png]
 Image compression and rendering web service/application.
 
 This is done using PHP and can be tested with the hosted version on my personal server t : http://floodanalyser.com/flamapp/flam.php
