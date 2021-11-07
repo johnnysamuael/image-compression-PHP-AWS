@@ -9,7 +9,7 @@
 - Simple and easy to use
 
   
-## API Reference
+## API Reference 
 
 #### Compression 
 
