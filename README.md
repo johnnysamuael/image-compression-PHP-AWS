@@ -18,7 +18,7 @@
 ```
 
 
-| Parameter | Type     | Description                |
+| Parameter | Type     | Description                | 
 | :-------- | :------- | :------------------------- |
 | `image` | `image` | **Required**. The image to be compressed |
 | `Quality` | `int` | **Required**. Quality of the compression(range:1 to 100) |
