@@ -11,7 +11,7 @@
   
 ## API Reference 
 
-#### Compression 
+#### Compression API Parameters
 
 ```http
   GET /endpoint.php?image=?&quality=?
